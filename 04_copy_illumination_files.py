@@ -27,7 +27,7 @@
 # IllumAGP
 # IllumMito
 
-# In[18]:
+# In[1]:
 
 
 import os
@@ -169,7 +169,7 @@ for batch_name in batch_name_list:
             except OSError as error:
                 os_warning.error(error)
             
-            org_plate_illum_path = os.path.join(illum_path, barcode_plate_Map_Name)
+            org_plate_illum_path = os.path.join(illum_path, barcode_plate_Map_Name,"IllumCorr")
             
             # Check if original illum folder exists
             if os.path.exists(org_plate_illum_path):

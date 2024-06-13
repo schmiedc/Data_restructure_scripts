@@ -215,7 +215,7 @@ def get_load_data_FMP_U2OS(plate_path, aws_plate_path, aws_illum_corr_path, batc
                     file_name_AGP = namesplit_file_name[0] + "-ch4sk1fk1fl1.tiff"
                     file_name_Mito = namesplit_file_name[0] + "-ch2sk1fk1fl1.tiff"
 
-                    process_logger.info("Found image : " + namesplit_file_name[0])
+                    # process_logger.info("Found image : " + namesplit_file_name[0])
                     
                     ### Analysis
                     temp_analysis = {"FileName_OrigDNA": [file_name_DNA],
@@ -332,9 +332,9 @@ for batch in batch_list:
             
             if load_data_with_illum is not None:
                 
-                if load_data_with_illum.shape[0] == 384:
+                if load_data_with_illum.shape[0] == 3456:
                     
-                    process_logger.info('load_data has 384 rows')
+                    process_logger.info('load_data has 3456 rows')
                     
                 else: 
                     
