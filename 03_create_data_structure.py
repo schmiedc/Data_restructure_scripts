@@ -110,7 +110,7 @@
 # |B1007_R3| A03            | Tetrandrine   | 5                       |
 # |B1007_R3| A04            | Nocodazole    | 5                       |
 
-# In[15]:
+# In[1]:
 
 
 # Load additional data: Annotation file
@@ -268,16 +268,16 @@ def copy_folder(input_path, destination_path):
         log.error(f"Source folder '{input_path}' does not exist.")
         return
 
-    # putput the name of the input path and add it to the destination path
-    input_path_name = os.path.basename(input_path.rstrip(os.sep))
-    destination_with_input_path = os.path.join(destination_path, input_path_name)
+    # put the name of the input path and add it to the destination path
+    #input_path_name = os.path.basename(input_path.rstrip(os.sep))
+    #destination_with_input_path = os.path.join(destination_path, input_path_name)
 
     # Create the input folder within the destination path
-    os.makedirs(destination_with_input_path, exist_ok=True)
+    # os.makedirs(destination_with_input_path, exist_ok=True)
     
     # Copy the content of the input_path into the destination and input path
     # shutil.copytree(input_path, destination_with_input_path, dirs_exist_ok=True)
-    shutil.move(input_path, destination_with_input_path)
+    shutil.move(input_path, destination_path)
     
 # For batch_name 
 batch_name_list = key_file['Batch_Name'].unique()
