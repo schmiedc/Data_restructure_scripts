@@ -1,0 +1,10 @@
+{
+    "input_directory": "/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/TestInput_corr/", 
+    "output_directory" : "/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/TestOutput/",
+    "filename_keyfile" : "FMP_U2OS_keyfile.csv",
+    "annotation_directory" : "/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/Annotations/",
+    "filename_annotation" : "2023-05-23_Annotation_Bioactives_U2OS_Corrected.csv",
+    "illmuniation_files_directory" : "/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/IllumFiles/U2OS_10uM",
+    "top_path_cpg" : "/home/ubuntu/bucket/"
+    
+}
