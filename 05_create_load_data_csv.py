@@ -23,7 +23,7 @@
 # ```
 # 
 
-# In[5]:
+# In[1]:
 
 
 # Create Batch folder using <Batch_Name> in <Source>/load_data_csv/
@@ -38,7 +38,7 @@ import logging
 import json # standard library
 
 
-# In[6]:
+# In[2]:
 
 
 cwd = os.getcwd()
@@ -50,7 +50,7 @@ with open(config_json_path, "r") as config_file:
     config = json.load(config_file)
 
 
-# In[7]:
+# In[3]:
 
 
 # location where the image data is and keyfile
@@ -65,7 +65,7 @@ data_output_path = config['output_directory']
 top_path_cpg = config['top_path_cpg']
 
 
-# In[8]:
+# In[4]:
 
 
 # setup logging
@@ -91,7 +91,7 @@ os_warning_path = data_input_path + os.path.sep + 'os-error_load_data.log'
 os_warning = setup_logger('second_logger', os_warning_path)
 
 
-# In[9]:
+# In[5]:
 
 
 # Log the used paths
@@ -101,7 +101,7 @@ process_logger.info("Output path: " + data_output_path)
 process_logger.info("Top file setting: " + top_path_cpg)
 
 
-# In[10]:
+# In[6]:
 
 
 ### prerequisites for IllumCorr
@@ -133,7 +133,7 @@ Temp_analysis = {"FileName_OrigDNA": [],
 Load_Analysis = pd.DataFrame(Temp_analysis)
 
 
-# In[11]:
+# In[7]:
 
 
 cpg_name = None
@@ -154,7 +154,7 @@ else:
     process_logger.error("Source number and/or cpg name number incorrect")
 
 
-# In[12]:
+# In[8]:
 
 
 # generate paths
@@ -174,7 +174,7 @@ except OSError as error:
     os_warning.error(error)
 
 
-# In[13]:
+# In[9]:
 
 
 # generate path for load_data that conforms with AWS cpg location
@@ -183,7 +183,7 @@ source_aws_cpg_path = os.path.join(aws_cpg_path, source)
 images_aws_cpg_path = os.path.join(source_aws_cpg_path, 'images')
 
 
-# In[14]:
+# In[10]:
 
 
 # this is dataset specific
@@ -265,13 +265,15 @@ def get_load_data_FMP_U2OS(plate_path, aws_plate_path, aws_illum_corr_path, batc
         return load_analysis
 
 
-# In[89]:
+# In[11]:
 
 
-batch_list = os.listdir(images_path)
+# batch_list = os.listdir(images_path)
+# For batch_name 
+batch_name_list = key_file['Batch_Name'].unique()
 
 # loop through the batches in the specified images dir
-for batch in batch_list:
+for batch in batch_name_list:
     
     process_logger.info("Create load_data for: " + batch)
     
