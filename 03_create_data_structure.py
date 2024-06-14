@@ -110,7 +110,7 @@
 # |B1007_R3| A03            | Tetrandrine   | 5                       |
 # |B1007_R3| A04            | Nocodazole    | 5                       |
 
-# In[1]:
+# In[27]:
 
 
 # Load additional data: Annotation file
@@ -122,21 +122,40 @@ import pandas as pd
 import re # standard library
 import shutil # standard library
 import logging # standard library
+import json # standard library
+
+
+# In[28]:
+
+
+cwd = os.getcwd()
+config_json_path = cwd  + os.path.sep + "config.json"
+config_json_path
+
+# load the config.json
+with open(config_json_path, "r") as config_file:
+    config = json.load(config_file)
+
+
+# In[29]:
+
 
 # location where the image data is and keyfile
-data_input_path = '/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/TestInput_corr/'
-key_file_name = 'FMP_U2OS_keyfile.csv'
-
-key_file = pd.read_csv(data_input_path + key_file_name)  
+data_input_path = config['input_directory']
+key_file_name = config['filename_keyfile'] # could be automatic
+key_file = pd.read_csv(data_input_path + key_file_name) 
 
 # location of annotation
-annot_path = '/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/Annotations/'
-annot_name = '2023-05-23_Annotation_Bioactives_U2OS_Corrected.csv'
-
+annot_path = config['annotation_directory']
+annot_name = config['filename_annotation']
 annot_file = pd.read_csv(annot_path + annot_name)
 
 # where the data should be move to
-data_output_path = '/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/TestOutput/'
+data_output_path = config['output_directory']
+
+
+# In[30]:
+
 
 # setup logging
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')

@@ -23,7 +23,7 @@
 # ```
 # 
 
-# In[81]:
+# In[5]:
 
 
 # Create Batch folder using <Batch_Name> in <Source>/load_data_csv/
@@ -35,21 +35,37 @@ import pandas as pd
 import numpy as np
 import sys
 import logging
+import json # standard library
 
-# Specify the directory path
-data_input_path = '/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/TestInput_corr/'
-key_file_name = 'FMP_U2OS_keyfile.csv'
 
-data_output_path = '/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/TestOutput/'
+# In[6]:
 
-# Load same key_file for transformation
+
+cwd = os.getcwd()
+config_json_path = cwd  + os.path.sep + "config.json"
+config_json_path
+
+# load the config.json
+with open(config_json_path, "r") as config_file:
+    config = json.load(config_file)
+
+
+# In[7]:
+
+
+# location where the image data is and keyfile
+data_input_path = config['input_directory']
+key_file_name = config['filename_keyfile'] # could be automatic
 key_file = pd.read_csv(data_input_path + key_file_name) 
 
+# where the data should be move to
+data_output_path = config['output_directory']
+
 # requirements from broad
-top_path_cpg = "/home/ubuntu/bucket/"
+top_path_cpg = config['top_path_cpg']
 
 
-# In[82]:
+# In[8]:
 
 
 # setup logging
@@ -75,7 +91,7 @@ os_warning_path = data_input_path + os.path.sep + 'os-error_load_data.log'
 os_warning = setup_logger('second_logger', os_warning_path)
 
 
-# In[83]:
+# In[9]:
 
 
 # Log the used paths
@@ -85,7 +101,7 @@ process_logger.info("Output path: " + data_output_path)
 process_logger.info("Top file setting: " + top_path_cpg)
 
 
-# In[84]:
+# In[10]:
 
 
 ### prerequisites for IllumCorr
@@ -117,7 +133,7 @@ Temp_analysis = {"FileName_OrigDNA": [],
 Load_Analysis = pd.DataFrame(Temp_analysis)
 
 
-# In[85]:
+# In[11]:
 
 
 cpg_name = None
@@ -138,7 +154,7 @@ else:
     process_logger.error("Source number and/or cpg name number incorrect")
 
 
-# In[86]:
+# In[12]:
 
 
 # generate paths
@@ -158,7 +174,7 @@ except OSError as error:
     os_warning.error(error)
 
 
-# In[87]:
+# In[13]:
 
 
 # generate path for load_data that conforms with AWS cpg location
@@ -167,7 +183,7 @@ source_aws_cpg_path = os.path.join(aws_cpg_path, source)
 images_aws_cpg_path = os.path.join(source_aws_cpg_path, 'images')
 
 
-# In[88]:
+# In[14]:
 
 
 # this is dataset specific

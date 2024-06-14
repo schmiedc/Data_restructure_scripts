@@ -27,7 +27,7 @@
 # IllumAGP
 # IllumMito
 
-# In[1]:
+# In[6]:
 
 
 import os
@@ -36,18 +36,39 @@ import glob
 import shutil
 import pandas as pd
 import logging
+import json # standard library
 
-# Specify the directory path
-data_input_path = '/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/TestInput_corr/'
-key_file_name = 'FMP_U2OS_keyfile.csv'
 
-data_output_path = '/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/TestOutput/'
+# In[7]:
 
-# Load same key_file for transformation
-key_file = pd.read_csv(data_input_path + key_file_name)  
+
+cwd = os.getcwd()
+config_json_path = cwd  + os.path.sep + "config.json"
+config_json_path
+
+# load the config.json
+with open(config_json_path, "r") as config_file:
+    config = json.load(config_file)
+
+
+# In[8]:
+
+
+# location where the image data is and keyfile
+data_input_path = config['input_directory']
+key_file_name = config['filename_keyfile'] # could be automatic
+key_file = pd.read_csv(data_input_path + key_file_name) 
+
+# where the data should be move to
+data_output_path = config['output_directory']
 
 # Path to illumination files
-illum_path = "/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/IllumFiles/U2OS_10uM/"
+# illum_path = "/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/IllumFiles/U2OS_10uM/"
+illum_path =  config['illmuniation_files_directory']
+
+
+# In[9]:
+
 
 # setup logging
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
