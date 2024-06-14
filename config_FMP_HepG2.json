@@ -1,0 +1,10 @@
+{
+    "input_directory": "/euopen/screeningunit/Bioactives/Transfer/FMP_HepG2/", 
+    "output_directory" : "/euopen/screeningunit/Bioactives/Transfer/ReadyForUpload/",
+    "filename_keyfile" : "FMP_HepG2_keyfile.csv",
+    "annotation_directory" : "/home/schmiedc/FMP_Docs/Projects/CellPainting/DataUpload/Annotations/",
+    "filename_annotation" : "2022-07-08_Annotation_Bioactives_HepG2.csv",
+    "illmuniation_files_directory" : "/euopen/screeningunit/Bioactives/Transfer/DataUpload/FMP_HepG2_illum/",
+    "top_path_cpg" : "/home/ubuntu/bucket/"
+    
+}
