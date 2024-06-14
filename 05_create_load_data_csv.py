@@ -387,7 +387,7 @@ for batch in batch_name_list:
 
         else:
             
-            process_logger.error(f"Error: Plate name {assay_plate_barcode_load} not unique", file=log)
+            process_logger.error(f"Error: Plate name {assay_plate_barcode_load} not unique")
 
 
 # In[ ]:
