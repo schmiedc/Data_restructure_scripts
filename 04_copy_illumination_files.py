@@ -27,7 +27,7 @@
 # IllumAGP
 # IllumMito
 
-# In[6]:
+# In[5]:
 
 
 import os
@@ -39,7 +39,7 @@ import logging
 import json # standard library
 
 
-# In[7]:
+# In[6]:
 
 
 cwd = os.getcwd()
@@ -51,7 +51,7 @@ with open(config_json_path, "r") as config_file:
     config = json.load(config_file)
 
 
-# In[8]:
+# In[7]:
 
 
 # location where the image data is and keyfile
@@ -67,7 +67,7 @@ data_output_path = config['output_directory']
 illum_path =  config['illmuniation_files_directory']
 
 
-# In[9]:
+# In[8]:
 
 
 # setup logging
