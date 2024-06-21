@@ -225,10 +225,10 @@ def get_load_data_FMP_U2OS(plate_path, aws_plate_path, aws_illum_corr_path, batc
                     # splits the filename and creates the channel specific name
                     # This naming scheme is specific to FMP U2OS
                     namesplit_file_name = file_name.split("-")
-                    filename_DNA = namesplit_i[0] + "-ch2sk1fk1fl1.tiff"
-                    filename_ER = namesplit_i[0] + "-ch1sk1fk1fl1.tiff"
-                    filename_AGP = namesplit_i[0] + "-ch4sk1fk1fl1.tiff"
-                    filename_Mito = namesplit_i[0] + "-ch3sk1fk1fl1.tiff"
+                    filename_DNA = namesplit_file_name[0] + "-ch2sk1fk1fl1.tiff"
+                    filename_ER = namesplit_file_name[0] + "-ch1sk1fk1fl1.tiff"
+                    filename_AGP = namesplit_file_name[0] + "-ch4sk1fk1fl1.tiff"
+                    filename_Mito = namesplit_file_name[0] + "-ch3sk1fk1fl1.tiff"
 
                     # process_logger.info("Found image : " + namesplit_file_name[0])
                     
