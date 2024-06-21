@@ -226,10 +226,10 @@ def get_load_data_USC_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, bat
                     # splits the filename and creates the channel specific name
                     # This naming scheme is specific to USC HepG2
                     namesplit_file_name = file_name.split("-")
-                    filename_DNA = namesplit_file_name[0] + "-ch1sk1fk1fl1.tiff"
-                    filename_ER = namesplit_file_name[0] + "-ch2sk1fk1fl1.tiff"
-                    filename_AGP = namesplit_file_name[0] + "-ch3sk1fk1fl1.tiff"
-                    filename_Mito = namesplit_file_name[0] + "-ch4sk1fk1fl1.tiff"
+                    file_name_DNA = namesplit_file_name[0] + "-ch1sk1fk1fl1.tiff"
+                    file_name_ER = namesplit_file_name[0] + "-ch2sk1fk1fl1.tiff"
+                    file_name_AGP = namesplit_file_name[0] + "-ch3sk1fk1fl1.tiff"
+                    file_name_Mito = namesplit_file_name[0] + "-ch4sk1fk1fl1.tiff"
 
                     # process_logger.info("Found image : " + namesplit_file_name[0])
                     

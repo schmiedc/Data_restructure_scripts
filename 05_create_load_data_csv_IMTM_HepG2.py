@@ -222,10 +222,10 @@ def get_load_data_IMTM_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, ba
 
                     # splits the filename and creates the channel specific name
                     # This naming scheme is specific to IMTM HepG2
-                    filename_DNA = filename_root + "L01A01Z01C01.tif"
-                    filename_ER = filename_root + "L01A02Z01C02.tif"
-                    filename_AGP = filename_root + "L01A01Z01C03.tif"
-                    filename_Mito = filename_root + "L01A02Z01C04.tif"
+                    file_name_DNA = filename_root + "L01A01Z01C01.tif"
+                    file_name_ER = filename_root + "L01A02Z01C02.tif"
+                    file_name_AGP = filename_root + "L01A01Z01C03.tif"
+                    file_name_Mito = filename_root + "L01A02Z01C04.tif"
 
                     # process_logger.info("Found image : " + namesplit_file_name[0])
                     
