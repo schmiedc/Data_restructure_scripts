@@ -1,0 +1,12 @@
+{
+    "input_directory": "/euopen/screeningunit/Bioactives/Transfer/IMTM_HepG2/",
+    "output_directory" : "/euopen/screeningunit/Bioactives/Transfer/ReadyForUpload/",
+    "filename_keyfile" : "IMTM_HepG2_keyfile.csv",
+    "annotation_directory" : "/euopen/screeningunit/Bioactives/Transfer/DataUpload/Annotations/",
+    "filename_annotation" : "2023-08-14_Annotation2_IMTM_HepG2.csv",
+    "illmuniation_files_directory" : "/euopen/screeningunit/Bioactives/Transfer/DataUpload/IMTM_HepG2_illum/",
+    "top_path_cpg" : "/home/ubuntu/bucket/"
+
+}
+
+
