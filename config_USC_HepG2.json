@@ -1,7 +1,7 @@
 {
     "input_directory": "/euopen/screeningunit/Bioactives/Transfer/USC_HepG2/",
     "output_directory" : "/euopen/screeningunit/Bioactives/Transfer/ReadyForUpload/",
-    "filename_keyfile" : "USC_HepG2_keyfile.csv",
+    "filename_keyfile" : "USC_HepG2_keyfile_USC_Mod_3.csv",
     "annotation_directory" : "/euopen/screeningunit/Bioactives/Transfer/DataUpload/Annotations/",
     "filename_annotation" : "2023-11-28_Annotation_USC_HepG2.csv",
     "illmuniation_files_directory" : "/euopen/screeningunit/Bioactives/Transfer/DataUpload/USC_HepG2_illum/",
