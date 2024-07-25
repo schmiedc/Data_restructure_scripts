@@ -23,7 +23,7 @@
 # ```
 # 
 
-# In[1]:
+# In[46]:
 
 
 # Create Batch folder using <Batch_Name> in <Source>/load_data_csv/
@@ -38,7 +38,7 @@ import logging
 import json # standard library
 
 
-# In[2]:
+# In[47]:
 
 
 cwd = os.getcwd()
@@ -50,7 +50,7 @@ with open(config_json_path, "r") as config_file:
     config = json.load(config_file)
 
 
-# In[3]:
+# In[48]:
 
 
 # location where the image data is and keyfile
@@ -65,7 +65,7 @@ data_output_path = config['output_directory']
 top_path_cpg = config['top_path_cpg']
 
 
-# In[4]:
+# In[49]:
 
 
 # setup logging
@@ -91,7 +91,7 @@ os_warning_path = data_input_path + os.path.sep + 'os-error_load_data.log'
 os_warning = setup_logger('second_logger', os_warning_path)
 
 
-# In[5]:
+# In[50]:
 
 
 # Log the used paths
@@ -101,7 +101,7 @@ process_logger.info("Output path: " + data_output_path)
 process_logger.info("Top file setting: " + top_path_cpg)
 
 
-# In[6]:
+# In[51]:
 
 
 ### prerequisites for IllumCorr
@@ -133,7 +133,7 @@ Temp_analysis = {"FileName_OrigDNA": [],
 Load_Analysis = pd.DataFrame(Temp_analysis)
 
 
-# In[7]:
+# In[52]:
 
 
 cpg_name = None
@@ -154,7 +154,7 @@ else:
     process_logger.error("Source number and/or cpg name number incorrect")
 
 
-# In[8]:
+# In[53]:
 
 
 # generate paths
@@ -174,7 +174,7 @@ except OSError as error:
     os_warning.error(error)
 
 
-# In[9]:
+# In[54]:
 
 
 # generate path for load_data that conforms with AWS cpg location
@@ -183,29 +183,31 @@ source_aws_cpg_path = os.path.join(aws_cpg_path, source)
 images_aws_cpg_path = os.path.join(source_aws_cpg_path, 'images')
 
 
-# In[10]:
+# In[57]:
 
 
 # this is dataset specific
 def get_load_data_IMTM_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, batch, plate, rows):
-    
+
     ### loop through images in a plate
-    images_path = os.path.join(plate_path, "Images")
-    aws_images_path = os.path.join(aws_plate_path, "Images")
+    images_path = plate_path
+    aws_images_path = aws_plate_path
     
     dataframes = []
+
+    load_analysis = pd.DataFrame 
     
     if os.path.isdir(images_path):
 
         for file_name in os.listdir(images_path):
-            
+
             if file_name.endswith(".tif"):
                 
                 # if we have a picture of channel 1 (every 4th picture)
-                if i.endswith("C01.tif"):
+                if file_name.endswith("C01.tif"):
                     
                     # split the filename into parts using the _ separator
-                    filename_parts = i.split("_")
+                    filename_parts = file_name.split("_")
                     
                     # the Well information is in the second last part
                     well = filename_parts[len(filename_parts)-2]
@@ -218,7 +220,7 @@ def get_load_data_IMTM_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, ba
                     field = str(int(last_part[last_index+1:last_index+4]))
                     
                     # will be used to reconstruct the filenames of all 4 channels
-                    filename_root = i[0:i.rfind("L")]            
+                    filename_root = file_name[0:file_name.rfind("L")]            
 
                     # splits the filename and creates the channel specific name
                     # This naming scheme is specific to IMTM HepG2
@@ -256,12 +258,20 @@ def get_load_data_IMTM_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, ba
 
                     dataframes.append(df_temp_analysis)
 
+            else:
+
+                process_logger.error(".tif not found")
+
         load_analysis = pd.concat(dataframes,ignore_index=True)
+
+    else:
+
+        process_logger.error("Directory not found")
     
-        return load_analysis
+    return load_analysis
 
 
-# In[11]:
+# In[58]:
 
 
 # batch_list = os.listdir(images_path)
@@ -335,7 +345,7 @@ for batch in batch_name_list:
             process_logger.info("Illum Path: " + plate_illum_corr_aws_cpg_path )
             
             full_plate_name_path = os.path.join(batch_images_path, assay_plate_barcode_load)
-            
+
             # plate_path, aws_plate_path, aws_illum_corr_path, batch, plate, Rows
             load_data_with_illum = get_load_data_IMTM_HepG2(full_plate_name_path,
                                                    plate_images_aws_cpg_path,
@@ -343,7 +353,7 @@ for batch in batch_name_list:
                                                    batch,
                                                    barcode_plate_Map_Name_load,
                                                    Rows)
-            
+
             if load_data_with_illum is not None:
                 
                 if load_data_with_illum.shape[0] == 3456:

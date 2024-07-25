@@ -110,7 +110,7 @@
 # |B1007_R3| A03            | Tetrandrine   | 5                       |
 # |B1007_R3| A04            | Nocodazole    | 5                       |
 
-# In[11]:
+# In[8]:
 
 
 # Load additional data: Annotation file
@@ -125,7 +125,7 @@ import logging # standard library
 import json # standard library
 
 
-# In[12]:
+# In[9]:
 
 
 cwd = os.getcwd()
@@ -137,7 +137,7 @@ with open(config_json_path, "r") as config_file:
     config = json.load(config_file)
 
 
-# In[13]:
+# In[10]:
 
 
 # location where the image data is and keyfile
@@ -154,7 +154,7 @@ annot_file = pd.read_csv(annot_path + annot_name)
 data_output_path = config['output_directory']
 
 
-# In[14]:
+# In[11]:
 
 
 # setup logging
