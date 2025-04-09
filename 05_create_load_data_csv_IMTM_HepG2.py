@@ -183,11 +183,11 @@ source_aws_cpg_path = os.path.join(aws_cpg_path, source)
 images_aws_cpg_path = os.path.join(source_aws_cpg_path, 'images')
 
 
-# In[57]:
+# In[ ]:
 
 
 # this is dataset specific
-def get_load_data_IMTM_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, batch, plate, rows):
+def get_load_data_IMTM_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, batch, plate, name_scheme, rows):
 
     ### loop through images in a plate
     images_path = plate_path
@@ -224,10 +224,52 @@ def get_load_data_IMTM_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, ba
 
                     # splits the filename and creates the channel specific name
                     # This naming scheme is specific to IMTM HepG2
-                    file_name_DNA = filename_root + "L01A01Z01C01.tif"
-                    file_name_ER = filename_root + "L01A02Z01C02.tif"
-                    file_name_AGP = filename_root + "L01A01Z01C03.tif"
-                    file_name_Mito = filename_root + "L01A02Z01C04.tif"
+
+                    # The illumination paths are plate dependent
+                    # The naming pattern does not impact the illumination path
+                    
+                    # TODO: use correct name_scheme if else
+                    #file_name_DNA = filename_root + "L01A01Z01C01.tif"
+                    #file_name_ER = filename_root + "L01A02Z01C02.tif"
+                    #file_name_AGP = filename_root + "L01A01Z01C03.tif"
+                    #file_name_Mito = filename_root + "L01A02Z01C04.tif"
+                    
+                    if (name_scheme == 'A'):
+                        ## Naming scheme A
+                        ### Plate B1001 R1 - R4
+
+                        file_name_DNA = filename_root + "L01A04Z01C01.tif"
+                        file_name_ER = filename_root + "L01A03Z01C02.tif"
+                        file_name_AGP = filename_root + "L01A02Z01C03.tif"
+                        file_name_Mito = filename_root + "L01A01Z01C04.tif"
+
+                    elif (name_scheme == 'B'):
+                        ## Naming scheme B
+                        ### Plate B1002 R1 - R4
+                        ### Plate B1003 R1 - R4 
+                        ### Plate B1004 R1 - R3
+                        file_name_DNA = filename_root + "L01A01Z01C01.tif"
+                        file_name_ER = filename_root + "L01A02Z01C02.tif"
+                        file_name_AGP = filename_root + "L01A01Z01C03.tif"
+                        file_name_Mito = filename_root + "L01A02Z01C04.tif"
+
+                    elif (name_scheme == 'C'):
+                        ## Naming scheme C
+                        ### Plate B1004 R4
+                        file_name_DNA = filename_root + "L01A01Z01C01.tif"
+                        file_name_ER = filename_root + "L01A02Z01C02.tif"
+                        file_name_AGP = filename_root + "L01A01Z01C03.tif"
+                        file_name_Mito = filename_root + "L01A02Z01C04.tif"
+
+                    elif (name_scheme == 'D'):
+                        ## Naming scheme D
+                        ### Plate B1005 R1 - R4
+                        ### Plate B1006 R1 - R4 
+                        ### Plate B1007 R1 - R3
+                        file_name_DNA = filename_root + "L01A04Z01C01.tif"
+                        file_name_ER = filename_root + "L01A03Z01C02.tif"
+                        file_name_AGP = filename_root + "L01A02Z01C03.tif"
+                        file_name_Mito = filename_root + "L01A01Z01C04.tif"
 
                     # process_logger.info("Found image : " + namesplit_file_name[0])
                     
@@ -271,10 +313,11 @@ def get_load_data_IMTM_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, ba
     return load_analysis
 
 
-# In[58]:
+# In[ ]:
 
 
-# batch_list = os.listdir(images_path)
+# The scheme for the file name pattern is extracted from the keyfile
+
 # For batch_name 
 batch_name_list = key_file['Batch_Name'].unique()
 
@@ -318,13 +361,16 @@ for batch in batch_name_list:
         # Create plate name folder in illum folder
         barcode_filtered_key_file_load = filtered_key_file_load[
             filtered_key_file_load['Assay_Plate_Barcode'] == assay_plate_barcode_load]
-
+    
         if barcode_filtered_key_file_load.shape[0] == 1:
     
             process_logger.info(f"Plate name {assay_plate_barcode_load} is unique")
     
             # gets the values to filter the annotation file
             barcode_plate_Map_Name_load = barcode_filtered_key_file_load['Plate_Map_Name'].iloc[0]
+
+            # Gets the naming scheme to use for get_load_data_IMTM_HepG2
+            name_scheme_load = barcode_filtered_key_file_load['Name_Scheme'].iloc[0]
             
             process_logger.info("Create batch folder: " +  barcode_plate_Map_Name_load)
             
@@ -352,6 +398,7 @@ for batch in batch_name_list:
                                                    plate_illum_corr_aws_cpg_path,
                                                    batch,
                                                    barcode_plate_Map_Name_load,
+                                                   name_scheme_load,
                                                    Rows)
 
             if load_data_with_illum is not None:
@@ -372,23 +419,31 @@ for batch in batch_name_list:
             filename_load_data_with_illum = os.path.join(plate_load_data_csv_path, "load_data_with_illum.csv")
             
             try: 
+
                 load_data_with_illum.to_csv(filename_load_data_with_illum, index = False)
+
             except AttributeError as error:
+
                 os_warning.error(error)
             
             # reduce to load_data table
             load_data = None
             
             try:
+
                 load_data = load_data_with_illum.iloc[:, 0:12]
+
             except AttributeError as error:
+
                 os_warning.error(error)
 
             filename_load_data = os.path.join(plate_load_data_csv_path, "load_data.csv")
             
             try:
                 load_data.to_csv(filename_load_data, index = False)
+
             except AttributeError as error:
+
                 os_warning.error(error)
 
         else:
