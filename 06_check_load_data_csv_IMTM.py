@@ -16,7 +16,7 @@ import logging
 
 # TODO: Create script that checks if files exists based on load_data_csv
 
-load_data_csv_dir = 'euopen/screeningunit/Bioactives/Transfer/ReadyForUpload/cpg0036-EU-OS-bioactives/IMTM/workspace/load_data_csv/'
+load_data_csv_dir = '/euopen/screeningunit/Bioactives/Transfer/ReadyForUpload/cpg0036-EU-OS-bioactives/IMTM/workspace/load_data_csv/'
 logger_dir = '/euopen/screeningunit/Bioactives/Transfer/IMTM_HepG2/'
 
 batchlist = ['2022_02_16_Batch1_HepG2',
@@ -92,19 +92,28 @@ for batch in batchlist:
         records = []
         
         for _, row in df.iterrows():
+
             for prefix in prefixes:
+
                 path_col = f"PathName_{prefix}"
                 file_col = f"FileName_{prefix}"
                 
-        full_path = os.path.join(
-            row[path_col].replace(old_base, image_base_dir),
-            row[file_col]
-        )
+            full_path = os.path.join(
+                row[path_col].replace(old_base, image_base_dir),
+                row[file_col]
+            )
+
+            records.append({
+                "FullPath": full_path,
+                "Channel": prefix
+            })
 
         for record in records:
             
             try:
                 file_exists = os.path.exists(record["FullPath"])  # Check if the file exists
+
+                
                 
                 check_results.append({
                     "FullPath": record["FullPath"],
