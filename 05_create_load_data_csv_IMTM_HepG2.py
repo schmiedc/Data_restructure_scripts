@@ -233,11 +233,11 @@ def get_load_data_IMTM_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, ba
                     #file_name_ER = filename_root + "L01A02Z01C02.tif"
                     #file_name_AGP = filename_root + "L01A01Z01C03.tif"
                     #file_name_Mito = filename_root + "L01A02Z01C04.tif"
-                    
+
                     if (name_scheme == 'A'):
                         ## Naming scheme A
                         ### Plate B1001 R1 - R4
-
+                        process_logger.info("Loaded naming scheme: A")
                         file_name_DNA = filename_root + "L01A04Z01C01.tif"
                         file_name_ER = filename_root + "L01A03Z01C02.tif"
                         file_name_AGP = filename_root + "L01A02Z01C03.tif"
@@ -248,6 +248,7 @@ def get_load_data_IMTM_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, ba
                         ### Plate B1002 R1 - R4
                         ### Plate B1003 R1 - R4 
                         ### Plate B1004 R1 - R3
+                        process_logger.info("Loaded naming scheme: B")
                         file_name_DNA = filename_root + "L01A01Z01C01.tif"
                         file_name_ER = filename_root + "L01A02Z01C02.tif"
                         file_name_AGP = filename_root + "L01A01Z01C03.tif"
@@ -256,6 +257,7 @@ def get_load_data_IMTM_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, ba
                     elif (name_scheme == 'C'):
                         ## Naming scheme C
                         ### Plate B1004 R4
+                        process_logger.info("Loaded naming scheme: C")
                         file_name_DNA = filename_root + "L01A01Z01C01.tif"
                         file_name_ER = filename_root + "L01A02Z01C02.tif"
                         file_name_AGP = filename_root + "L01A01Z01C03.tif"
@@ -266,12 +268,11 @@ def get_load_data_IMTM_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, ba
                         ### Plate B1005 R1 - R4
                         ### Plate B1006 R1 - R4 
                         ### Plate B1007 R1 - R3
+                        process_logger.info("Loaded naming scheme: D")
                         file_name_DNA = filename_root + "L01A04Z01C01.tif"
                         file_name_ER = filename_root + "L01A03Z01C02.tif"
                         file_name_AGP = filename_root + "L01A02Z01C03.tif"
                         file_name_Mito = filename_root + "L01A01Z01C04.tif"
-
-                    # process_logger.info("Found image : " + namesplit_file_name[0])
                     
                     ### Analysis
                     temp_analysis = {"FileName_OrigDNA": [file_name_DNA],
@@ -371,6 +372,8 @@ for batch in batch_name_list:
 
             # Gets the naming scheme to use for get_load_data_IMTM_HepG2
             name_scheme_load = barcode_filtered_key_file_load['Name_Scheme'].iloc[0]
+
+            process_logger.info("Naming scheme: " + name_scheme_load)
             
             process_logger.info("Create batch folder: " +  barcode_plate_Map_Name_load)
             
