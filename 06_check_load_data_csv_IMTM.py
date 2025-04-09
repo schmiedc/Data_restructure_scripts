@@ -65,7 +65,7 @@ process_logger.info("Input path: " + load_data_csv_dir)
 
 
 old_base = "/home/ubuntu/bucket/"
-image_base_dir = 'euopen/screeningunit/Bioactives/Transfer/ReadyForUpload/'
+image_base_dir = '/euopen/screeningunit/Bioactives/Transfer/ReadyForUpload/'
 
 check_results = []
 
