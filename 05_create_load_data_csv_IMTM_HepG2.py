@@ -373,6 +373,8 @@ for batch in batch_name_list:
             # Gets the naming scheme to use for get_load_data_IMTM_HepG2
             name_scheme_load = barcode_filtered_key_file_load['Name_Scheme'].iloc[0]
 
+            process_logger.info("Test test")
+
             process_logger.info("Naming scheme: " + name_scheme_load)
             
             process_logger.info("Create batch folder: " +  barcode_plate_Map_Name_load)
