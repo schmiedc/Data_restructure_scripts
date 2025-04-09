@@ -113,13 +113,15 @@ for batch in batchlist:
             try:
                 file_exists = os.path.exists(record["FullPath"])  # Check if the file exists
 
-                
-                
                 check_results.append({
                     "FullPath": record["FullPath"],
                     "Channel": record["Channel"],
                     "FileExists": file_exists
                     })
+                
+                if (file_exists == False):
+
+                     process_logger.info("Missing: " + record["Channel"])
 
             # Handle unexpected errors (e.g., permission issues, invalid paths)
             except Exception as e:
