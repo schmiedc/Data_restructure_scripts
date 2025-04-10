@@ -138,7 +138,7 @@ check_results_df = pd.DataFrame(check_results)
 
 process_logger.info("All files: " + str(check_results_df.shape[0]))
 process_logger.info("Present files: " + str(check_results_df["FileExists"].sum()))
-process_logger.info("Missing files: " + str(~check_results_df["FileExists"].sum()))
+process_logger.info("Missing files: " + str((~check_results_df["FileExists"]).sum()))
 
 
 # Save to a CSV file
