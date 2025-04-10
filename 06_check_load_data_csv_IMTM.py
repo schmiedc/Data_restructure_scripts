@@ -136,6 +136,11 @@ for batch in batchlist:
 # Convert the results to a DataFrame
 check_results_df = pd.DataFrame(check_results)
 
+process_logger.info("All files: " + check_results_df.shape[0])
+process_logger.info("Present files: " + check_results_df["FileExists"].sum())
+process_logger.info("Present files: " + ~check_results_df["FileExists"].sum())
+
+
 # Save to a CSV file
 check_results_df.to_csv(logger_dir + os.sep + "missing_files.csv", index=False)
 
@@ -143,5 +148,5 @@ check_results_df.to_csv(logger_dir + os.sep + "missing_files.csv", index=False)
 # In[ ]:
 
 
-
+# TODO: count missing and found files
 
