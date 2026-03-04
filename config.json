@@ -1,0 +1,12 @@
+{
+    "input_directory": "/home/schmiedc/FMP_Docs/Projects/Bioactives_upload/TestInput_IMTM/",
+    "output_directory" : "/home/schmiedc/FMP_Docs/Projects/Bioactives_upload/TestOutput/",
+    "filename_keyfile" : "IMTM_HepG2_keyfile.csv",
+    "annotation_directory" : "/home/schmiedc/FMP_Docs/Projects/Bioactives_upload/Annotations/",
+    "filename_annotation" : "2023-08-14_Annotation2_IMTM_HepG2.csv",
+    "illmuniation_files_directory" : "/home/schmiedc/FMP_Docs/Projects/Bioactives_upload/IllumFiles/IMTM_Illum/",
+    "top_path_cpg" : "/home/ubuntu/bucket/"
+
+}
+
+

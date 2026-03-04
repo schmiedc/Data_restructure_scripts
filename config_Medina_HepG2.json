@@ -1,11 +1,9 @@
 {
-    "input_directory": "/euopen/screeningunit/Bioactives/Transfer/Medina_HepG2/",
-    "output_directory" : "/euopen/screeningunit/Bioactives/Transfer/ReadyForUpload/",
-    "filename_keyfile" : "MEDINA_HepG2_keyfile.csv",
-    "annotation_directory" : "/euopen/screeningunit/Bioactives/Transfer/DataUpload/Annotations/",
-    "filename_annotation" : "2023-11-28_Annotation_MEDI_HepG2.csv",
-    "illmuniation_files_directory" : "/euopen/screeningunit/Bioactives/Transfer/DataUpload/MEDINA_HepG2_illum/",
-    "top_path_cpg" : "/home/ubuntu/bucket/"
-
+    "input_directory": "/euopen/screeningunit/Bioactives/Transfer/original/Medina_HepG2/",
+    "output_directory": "/euopen/screeningunit/Bioactives/Transfer/ready_for_upload/",
+    "filename_keyfile": "MEDINA_HepG2_keyfile.csv",
+    "annotation_directory": "/euopen/screeningunit/Bioactives/Transfer/annotations/",
+    "filename_annotation": "2023-11-28_Annotation_MEDI_HepG2.csv",
+    "illmuniation_files_directory": "/euopen/screeningunit/Bioactives/Transfer/illumination_files/MEDINA_HepG2_illum/",
+    "top_path_cpg": "/home/ubuntu/bucket/"
 }
-
