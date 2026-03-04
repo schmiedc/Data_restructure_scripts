@@ -1,7 +1,7 @@
 {
     "input_directory": "/euopen/screeningunit/Bioactives/Transfer/original/IMTM_HepG2/",
     "output_directory": "/euopen/screeningunit/Bioactives/Transfer/ready_for_upload/",
-    "filename_keyfile": "IMTM_HepG2_keyfile_Mod_3csv",
+    "filename_keyfile": "IMTM_HepG2_keyfile_Mod_3.csv",
     "annotation_directory": "/euopen/screeningunit/Bioactives/Transfer/annotations/",
     "filename_annotation": "2023-08-14_Annotation2_IMTM_HepG2.csv",
     "illmuniation_files_directory": "/euopen/screeningunit/Bioactives/Transfer/illumination_files/IMTM_HepG2_illum/",
