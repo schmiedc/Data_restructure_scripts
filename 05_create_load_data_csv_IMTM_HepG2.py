@@ -308,12 +308,14 @@ def get_load_data_IMTM_HepG2(plate_path, aws_plate_path, aws_illum_corr_path, ba
             else:
 
                 process_logger.error(".tif not found")
+                process_logger.error("File name: " + file_name)
 
         load_analysis = pd.concat(dataframes,ignore_index=True)
 
     else:
 
         process_logger.error("Directory not found")
+        process_logger.error("Directory name: " + images_path)
     
     return load_analysis
 
